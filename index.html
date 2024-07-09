@@ -131,11 +131,11 @@
 
 
 
-        function updateSpanText(id,depositNumber)
+        function updateSpanText(id,Number)
         {
         const Balance=document.getElementById(id).innerText;
        const BalanceNumber= parseFloat(Balance);
-       const total=depositNumber+BalanceNumber;
+       const total=Number+BalanceNumber;
        document.getElementById(id).innerText=total;
         }
 
