@@ -37,3 +37,10 @@ body{
     border-radius: 10px;
 }
 
+footer p{
+    margin: 100px;
+    text-align: center;
+    font-size: 20px;
+    color: brown;
+   text-decoration-style: solid;
+    }

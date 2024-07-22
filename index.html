@@ -72,34 +72,51 @@
 
     </div>
 
- 
+    <footer>
+        <p>Design By Turja Chakraborty</p>
+       </footer>
 
 
     <script>
   //login button event handelar
+ 
         const loginbtn=document.getElementById("login-id");
         loginbtn.addEventListener("click",function()
         {
-            const loginArea=document.getElementById("login-area");
-            loginArea.style.display="none";
+      
 
-            const TransactionArea=document.getElementById("Transaction-area");
-            TransactionArea.style.display="block";
+            
+             const loginArea=document.getElementById("login-area");
+             loginArea.style.display="none";
+
+             const TransactionArea=document.getElementById("Transaction-area");
+             TransactionArea.style.display="block";
+        
+      
+        
+       
 
         })
+    
+   
         //deposit button handelar
 
         const DepositButton=document.getElementById("depositbutton");
         DepositButton.addEventListener("click",function()
         {
             const depositNumber=getInputNumber("deposit-amount");
-        
+        if(depositNumber<0)
+        {
+            alert("dont deposit negetive number");
+        }
+        else{
        updateSpanText("current-deposit",depositNumber)
 
       updateSpanText("current-balance",depositNumber)
-
+        
 
        document.getElementById("deposit-amount").value="";
+        }
         
 
         })
