@@ -43,4 +43,55 @@ footer p{
     font-size: 20px;
     color: brown;
    text-decoration-style: solid;
+   font-family: 'Times New Roman', Times, serif;
     }
+
+#btn
+{
+    background-color: coral;
+}
+
+
+    input[type='text']{
+        background-color: #b4b9cd;
+        padding: 10px 0px;
+        color: #ffffff;
+        width: 100%;
+        margin: 0 auto;
+        border: 2px solid #858299;
+        height: 50px;
+        padding: 10px;
+    }
+
+    input[type='text']:focus {
+        background-color: #3D4153;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    input[type='password']{
+        background-color: #b4b9cd;
+        padding: 10px 0px;
+        color: #ffffff;
+        width: 100%;
+        margin: 0 auto;
+        border: 2px solid #858299;
+        height: 50px;
+        padding: 10px;
+    }
+
+    input[type='password']:focus {
+        background-color: #3D4153;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .text-center
+    {
+        margin-top: 30px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(151, 172, 31);
+    color: brown;
+    }
+

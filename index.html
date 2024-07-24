@@ -10,13 +10,30 @@
 <body>
    
     <div id="login-area">
-        <h2 class="text-center">Welcome our Pioneer Bank</h2>
+        <h2 class="text-center">Welcome Our Pioneer Bank</h2>
         <div class="submit-area">
-            <h3>login</h3>
-            <input type="text" class="form-control" placeholder="Email">
+            <h3>Login</h3>
+            <input type="text" id="text-id"class="form-control" placeholder="Email">
             <br>
-            <input type="password" class="form-control" id="" placeholder="password">
+            <input type="password" id="password-id"class="form-control" id="" placeholder="password">
             <br>
+
+
+
+
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="display-pin" class="form-control" type="text">
+                    <br>
+                    <button id="generate-pin" class="generate-btn">Generate Password</button>
+                </div>
+            </div>
+
+            <br>
+
+
+
+
             <button id="login-id"class="btn btn-success">Enter </button>
 
         </div>
@@ -53,6 +70,7 @@
 
                     <h3>Deposit</h3>
                 <input id="deposit-amount" type="text" name="" id="" class="form-control" placeholder="$ amount">
+                <br>
                 <button id="depositbutton" class=" btn btn-success">Deposit</button>
                 </div>
                 
@@ -63,6 +81,7 @@
 
                     <h3>Withdraw</h3>
                 <input id="withdraw-amount"type="text" name="" id="" class="form-control" placeholder="$amount of withdraw money">
+                <br>
                 <button id="withdrawbutton"class="btn btn-success">Withdraw</button>
                 </div>
             </div>
@@ -73,30 +92,93 @@
     </div>
 
     <footer>
-        <p>Design By Turja Chakraborty</p>
+        <p>Copyright By Turja Chakraborty</p>
        </footer>
 
 
+
+
+
     <script>
+
+
+
+//generate pin area
+
+function getPin()
+{
+    const pin = generatePin();
+    const pinString = pin + '';
+    if(pinString.length === 4)
+{
+        return pin;
+}
+    else
+{
+        // console.log('pin not 3 digit found', pin);
+        return getPin();
+}
+}
+
+function generatePin()
+{
+    const random = Math.round(Math.random()*10000);
+    return random;
+}
+
+document.getElementById('generate-pin').addEventListener('click', function()
+{
+    const pin = getPin();
+    // display Pin
+    const displayPinField = document.getElementById('display-pin');
+    displayPinField.value = pin;
+});
+
+
+
+
+
+
+
+
+
   //login button event handelar
  
         const loginbtn=document.getElementById("login-id");
         loginbtn.addEventListener("click",function()
         {
-      
+            const passwordControl=document.getElementById("password-id").value;
+            const passwordNumber=parseFloat(passwordControl);
 
-            
+            const  textControl=document.getElementById("text-id").value;
+            document.getElementById("text-id").value="";
+
+
+
+            const displayPinField = document.getElementById('display-pin');
+            const currentPin = displayPinField.value;
+            document.getElementById("display-pin").value="";
+
+
+
+      if(passwordNumber==currentPin && textControl=="t")
+      {
              const loginArea=document.getElementById("login-area");
              loginArea.style.display="none";
 
              const TransactionArea=document.getElementById("Transaction-area");
              TransactionArea.style.display="block";
+             }
+              else
+         {
+    alert("please enter your vaild password");
+         }
         
-      
+
         
        
 
-        })
+      })
     
    
         //deposit button handelar
@@ -105,9 +187,12 @@
         DepositButton.addEventListener("click",function()
         {
             const depositNumber=getInputNumber("deposit-amount");
+
         if(depositNumber<0)
         {
-            alert("dont deposit negetive number");
+            alert("Dont deposit negetive number");
+
+            document.getElementById("deposit-amount").value=""//dont show text after process
         }
         else{
        updateSpanText("current-deposit",depositNumber)
@@ -119,6 +204,7 @@
         }
         
 
+
         })
            //withdraw event handaler
            
@@ -127,18 +213,28 @@
            {
         
              const withdrawNumber=getInputNumber("withdraw-amount");
-             console.log(withdrawNumber);
+             
+             
+
+
+             if(withdrawNumber<0  )
+        {
+            alert("Dont withdraw negetive money");
+            document.getElementById("withdraw-amount").value="";
+        }
+        else{
 
              updateSpanText("current-withdraw",withdrawNumber);
              updateSpanText("current-balance",-1*withdrawNumber);
 
              document.getElementById("withdraw-amount").value="";
+        }
 
            })
 
 
 
-           function getInputNumber(id)
+           function getInputNumber(id)//get value from input type box
            {
             const Amount=document.getElementById(id).value;
             const AmountNumber=parseFloat(Amount);
@@ -153,8 +249,27 @@
         const Balance=document.getElementById(id).innerText;
        const BalanceNumber= parseFloat(Balance);
        const total=Number+BalanceNumber;
-       document.getElementById(id).innerText=total;
-        }
+       if(total<0 )
+    
+       {
+        alert("You Cannot withdraw Money.Insuffeicient Balance");
+     
+       
+        
+       }
+      
+    
+       else
+       {
+        document.getElementById(id).innerText=total;
+       }
+       
+       
+       
+       }
+
+
+        
 
     </script>
 
